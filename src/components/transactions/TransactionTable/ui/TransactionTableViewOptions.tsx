@@ -26,13 +26,13 @@ export function TransactionTableViewOptions<TData>({
         <Button
           variant="outline"
           size="sm"
-          className="ml-4 xs:ml-auto h-8 flex"
+          className="h-9 flex select-none"
         >
           <Settings2 />
           View
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
+      <DropdownMenuContent align="end" className="w-[150px] select-none">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table

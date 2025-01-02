@@ -1,3 +1,4 @@
+import mockTransactions from '@/constants/mock_transactions_result';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TransactionValidation } from '../validation/TransactionValidation';
 
@@ -11,7 +12,7 @@ interface TransactionsState {
 }
 
 const initialState: TransactionsState = {
-  items: [],
+  items: [...mockTransactions],
 };
 
 export const transactionsSlice = createSlice({

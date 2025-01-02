@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { getExchangeRate, SUPPORTED_CURRENCIES } from "@/constants/currency";
-import { TransactionOperation } from "@/constants/transactionOperations";
 import { addTransaction } from "@/store/transactionsSlice";
 import {
   type TransactionValidation,
@@ -39,7 +38,7 @@ const DEFAULT_VALUES: Partial<TransactionValidation> = {
   currency2: SUPPORTED_CURRENCIES[1],
   amount1: "",
   amount2: "",
-  operation: TransactionOperation.Buy,
+  operation: "Buy",
   exchangeRate: "",
   amountFromClient: "",
   client: "",
@@ -234,8 +233,8 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                             <SelectValue placeholder="Select operation" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value={TransactionOperation.Buy}>Buy</SelectItem>
-                            <SelectItem value={TransactionOperation.Sell}>Sell</SelectItem>
+                            <SelectItem value="Buy">Buy</SelectItem>
+                            <SelectItem value="Sell">Sell</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>

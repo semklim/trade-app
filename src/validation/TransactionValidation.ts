@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { SUPPORTED_CURRENCIES } from '../constants/currency';
-import { TransactionOperation } from '../constants/transactionOperations';
 
 export const transactionSchema = z.object({
   currency1: z.custom<CurrencyCode>((val) => SUPPORTED_CURRENCIES.includes(val as CurrencyCode), {
@@ -13,7 +12,7 @@ export const transactionSchema = z.object({
     message: "Please select a valid currency",
   }),
   amount2: z.string().optional(),
-  operation: z.enum([TransactionOperation.Buy, TransactionOperation.Sell], {
+  operation: z.enum(["Buy", "Sell"], {
     required_error: "Please select an operation.",
   }),
   exchangeRate: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {

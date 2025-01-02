@@ -1,4 +1,5 @@
 import { Transaction } from "@/store/transactionsSlice";
+import { formatTimestamp } from "@/utils/dateformater";
 import { cn } from "@/utils/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./ui/TransactionTableHead";
@@ -87,12 +88,26 @@ export const transactionsColumns: ColumnDef<Transaction>[] = [
     ),
   },
   {
+    accessorKey: "time",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Time" />
+    ),
+    cell: ({ row }) => {
+      const formattedDate = formatTimestamp(row.getValue("time"));
+      return <div className="lowercase">{formattedDate.date} in {formattedDate.time}</div>;
+    },
+  },
+  {
     accessorKey: "client",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Client" />
     ),
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("client")}</div>
-    ),
+    cell: ({ row }) => {
+      const client = row.getValue<string>("client");
+
+      const formatted = client.slice(0, 4) + "..." + client.slice(-4);
+
+      return <div className="lowercase">{formatted}</div>;
+    },
   },
 ];

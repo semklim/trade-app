@@ -24,6 +24,7 @@ import {
 import { RootState } from "@/store"
 import { useSelector } from "react-redux"
 import { transactionsColumns } from "./transactionTableColumns"
+import { TransactionTablePageSize } from "./ui/TransactionTablePageSize"
 import { TransactionTableViewOptions } from "./ui/TransactionTableViewOptions"
 
 
@@ -68,7 +69,10 @@ export default function TransactionsTable() {
           }
           className="max-w-sm"
         />
-      <TransactionTableViewOptions table={table} />
+        <div className="ml-4 xs:ml-auto flex items-center space-x-2">
+          <TransactionTablePageSize table={table} />
+          <TransactionTableViewOptions table={table} />
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -119,7 +123,7 @@ export default function TransactionsTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 select-none">
         <div className="space-x-2">
           <Button
             variant="outline"
