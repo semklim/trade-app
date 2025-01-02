@@ -94,7 +94,7 @@ export const transactionsColumns: ColumnDef<Transaction>[] = [
     ),
     cell: ({ row }) => {
       const formattedDate = formatTimestamp(row.getValue("time"));
-      return <div className="lowercase">{formattedDate.date} in {formattedDate.time}</div>;
+      return <div className="lowercase">{formattedDate.date} at {formattedDate.time}</div>;
     },
   },
   {
