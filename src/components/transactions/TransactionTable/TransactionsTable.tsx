@@ -21,16 +21,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { RootState } from "@/store"
-import { useSelector } from "react-redux"
+import { useTransactionsContext } from "@/hooks/useTransactionsContext"
 import { transactionsColumns } from "./transactionTableColumns"
 import { TransactionTablePageSize } from "./ui/TransactionTablePageSize"
 import { TransactionTableViewOptions } from "./ui/TransactionTableViewOptions"
 
-
 export default function TransactionsTable() {
-  const transactions = useSelector((state: RootState) => state.transactions.items);
-
+  const { transactions } = useTransactionsContext();
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -99,9 +96,10 @@ export default function TransactionsTable() {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell align="center" key={cell.id}>
+                    <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -123,7 +121,7 @@ export default function TransactionsTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4 select-none">
+      <div className="flex items-center justify-end space-x-2 py-4">
         <div className="space-x-2">
           <Button
             variant="outline"

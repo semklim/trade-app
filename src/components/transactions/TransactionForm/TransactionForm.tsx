@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel
+  FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { getExchangeRate, SUPPORTED_CURRENCIES } from "@/constants/currency";
-import { addTransaction } from "@/store/transactionsSlice";
+import { useTransactionsContext } from "@/hooks/useTransactionsContext";
 import {
   type TransactionValidation,
   transactionSchema,
@@ -46,7 +45,8 @@ const DEFAULT_VALUES: Partial<TransactionValidation> = {
 };
 
 const TransactionForm = ({ onClose }: TransactionFormProps) => {
-  const dispatch = useDispatch();
+  const { add } = useTransactionsContext();
+
   const form = useForm<TransactionValidation>({
     resolver: zodResolver(transactionSchema),
     defaultValues: DEFAULT_VALUES,
@@ -99,16 +99,16 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
   }, [calculateTotalPayment, form]);
 
   const onSubmit = useCallback(
-    (values: TransactionValidation) => {
+    async (values: TransactionValidation) => {
       const transaction = {
         id: uuidv4(),
         ...values,
         time: new Date().toISOString(),
       };
-      dispatch(addTransaction(transaction));
+      add(transaction);
       onClose();
     },
-    [dispatch, onClose]
+    [add, onClose]
   );
 
   return (
