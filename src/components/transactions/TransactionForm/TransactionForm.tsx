@@ -9,6 +9,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -148,6 +149,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -167,6 +169,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                           }}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -197,6 +200,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -238,6 +242,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -253,6 +258,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -268,6 +274,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                       <FormControl>
                         <Input {...field} readOnly />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -283,6 +290,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -298,6 +306,7 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
